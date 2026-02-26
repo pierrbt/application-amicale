@@ -1,48 +1,24 @@
-# Notes de développement
+# Notes de developpement
 
-Ce fichier permet de regrouper les différentes informations sur des décisions actuelles, comme des changements de version ou des choix de technologie, tout cela dans le but de ne pas répéter les mêmes erreurs.
+Ce document centralise les decisions techniques utiles a la maintenance.
 
-Ces notes pouvant évoluer dans le temps, leur date d'écriture est aussi indiquée.
+## 2026-02 - Etat general
 
-## _2022-09-18_ | react-navigation-collapsible
+- Socle actuel : React Native `0.79.6`, React `19.0.0`
+- CI standardisee sur Node `24`
+- Application toujours en architecture React Native bare workflow
 
-Bloquée en 6.0.0 à cause d'un problème fatal sous IOS. Le packet n'étant plus maintenu, il faudra migrer vers une autre librairie.
+## 2026-02 - Navigation collapsible
 
-Update 02/2026: removed, and removed collapsible header
+- `react-navigation-collapsible` retire
+- En-tete collapsible supprime pour simplifier maintenance et compatibilite
 
-## _2020-10-07_ | react-native-keychain
+## 2026-02 - Stockage token
 
-Bloquée en 4.0.5 à cause d'un problème de performances. Au dessus de cette version, la récupération du token prend plusieurs secondes, ce qui n'est pas acceptable.
+- `react-native-keychain` mis a jour (les regressions historiques semblent resolues)
+- Le token Amicale reste stocke dans le keychain natif
 
-[Référence](https://github.com/oblador/react-native-keychain/issues/337)
+## Historique (rappel)
 
-Update 02/2026: recent versions appear to be doing better
-
-## _2020-09-24_ | Flow
-
-Flow est un système d'annotation permettant de rendre JavaScript typé statique. Développée par Facebook, cette technologie à initialement été adoptée. En revanche, de nombreux problèmes sont apparus :
-* Système très complexe donnant de nombreuses erreurs inconnues, rendant la contribution complexe pour les non-initiés
-* Manque de compatibilité avec les librairies existantes (la majorité utilisant TypeScript)
-* Utilisation excessive du système lors du développement
-* Plantage régulier du service Flow, nécessitant un redémarrage manuel
-
-Ainsi, il a été décidé de migrer le projet vers Typescript.
-
-## _2020-06-23_ | Expo
-
-Expo est une surcouche à react native permettant de simplifier le processus de build. Le projet à commencé en l'utilisant, mais de nombreux problèmes ont été rencontrés :
-* Augmentation importante de la taille de l'application
-* Augmentation importante du temps de démarrage
-* Impossibilité d'utiliser certaines librairies
-* Obligation d'utiliser une version de react-native spécifique
-* Impossibilité d'utiliser le moteur Hermes sur Android
-
-Pour ces raisons, il a été décidé de l'abandonner pour passer à un développement en react-native pur. 
-
-[Site officiel](https://docs.expo.io/)
-
-## _2020-06-23_ | react-native-mapbox-gl
-
-Librairie utilisée pour afficher une carte en utilisant OSM. N'a pas été utilisée car augmente la taille de l'apk de quelques Mo et rend la compilation plus difficile (il est nécessaire d'augmenter la taille du java heap dans gradle.properties).
-
-[Dépot](https://github.com/react-native-mapbox-gl/maps)
+- Migration Flow -> TypeScript (simplification contribution)
+- Abandon d'Expo managed workflow au profit du bare workflow

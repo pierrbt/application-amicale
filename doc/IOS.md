@@ -1,18 +1,40 @@
-## Renewing Apple distribution certificates
+# iOS - certificats et build
 
-1. Create a [Certificate Signing Request][certsignreq] on a mac (see
-   `INSTALL.md` for instructions for a VM) using the President's address.
-2. Have the [request signed][certlist]. Download.
-3. Import into Keychain on mac.
-4. Export `.p12` (see [this][sop12]).
-5. Create a new [provisioning profile][provisioning] (App Store distribution),
-   selecting the new certificate. Download.
-6. Update the corresponding [variables][githubactions] for the CI builds. Use
-   `base64 clubinfo2025.mobileprovision --wrap=0` (change filename when necessary).
-7. Try to run `build-ios` workflow to confirm proper configuration.
+Procedure de reference pour renouveler les certificats de distribution iOS.
 
-[certsignreq]: https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request
-[certlist]: https://developer.apple.com/account/resources/certificates/list
-[sop12]: https://stackoverflow.com/questions/9418661/how-to-create-p12-certificate-for-ios-distribution
-[provisioning]: https://developer.apple.com/account/resources/profiles/list
-[githubactions]: https://github.com/ClubInfoInsaT/application-amicale/settings/environments
+## Prerequis
+
+- macOS avec Xcode recent
+- Acces Apple Developer de l'organisation
+- Acces aux secrets GitHub Actions (`build-ios`)
+
+## Renouveler les certificats
+
+1. Generer une CSR sur macOS
+2. Creer et signer le certificat dans Apple Developer
+3. Importer le certificat dans Keychain
+4. Exporter en `.p12`
+5. Regenerer un provisioning profile App Store
+6. Encoder les fichiers en base64 et mettre a jour les secrets GitHub
+7. Lancer le workflow `build-ios` pour valider
+
+## Commande utile (base64)
+
+```bash
+base64 -i clubinfo.mobileprovision | tr -d '\n'
+```
+
+Adapter le nom de fichier selon le profil utilise.
+
+## Liens Apple/GitHub
+
+- CSR : <https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request>
+- Certificats : <https://developer.apple.com/account/resources/certificates/list>
+- Profils : <https://developer.apple.com/account/resources/profiles/list>
+- Environnements GitHub Actions :
+  <https://github.com/ClubInfoInsaT/application-amicale/settings/environments>
+
+## Notes
+
+- Le build iOS de prod passe par GitHub Actions
+- Les valeurs sensibles ne doivent jamais etre committees

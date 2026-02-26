@@ -1,37 +1,29 @@
 # Rapport de bug
 
-## ⚠️ Avant de rapporter un bug, merci de vérifier que tu utilises la dernière version de Campus 
+Merci de verifier d'abord que le bug existe toujours sur la derniere version.
 
 ## Comportement attendu
 
-Description de ce qu'il devrait se passer.
+Que devrait-il se passer ?
 
-## Comportement actuel
+## Comportement observe
 
-Description de ce qu'il se passe.
+Que se passe-t-il reellement ?
 
-## Solution possible
+## Etapes pour reproduire
 
-Si jamais t'as une idée, sinon oublie.
+1. ...
+2. ...
+3. ...
 
-## Étapes pour reproduire le problème
+## Contexte
 
-Si tu peux détailler ta démarche ça aide beaucoup !
+- Plateforme : Android / iOS
+- Version OS :
+- Version de l'application :
+- Compte connecte (oui/non) :
+- Informations complementaires :
 
-1. 
-2. 
-3. 
+## Captures / logs (optionnel)
 
-# Contexte
-
-Essaie de compléter le plus d'info possible.
-
-* Type de téléphone (Android/iOS) :
-* Version du système :
-* Version de l'application Campus :
-* Autres informations que tu juges utiles :
-
-
-# Détails
-
-Si jamais tu veux dire des choses en plus c'est ici.
+Ajoute ici les captures d'ecran, videos ou extraits de logs utiles.
